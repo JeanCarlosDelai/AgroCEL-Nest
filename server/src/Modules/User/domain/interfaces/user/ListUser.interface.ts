@@ -1,5 +1,5 @@
 import { UserInterface } from './User.interface';
 
-export interface ListUser {
+export interface ListUserInterface {
   data: UserInterface[];
 }

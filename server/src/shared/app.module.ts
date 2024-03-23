@@ -1,7 +1,13 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'dotenv/config';
-import { UserHTTPModule } from 'src/Modules/User/infra/user-http.module';
+import { UserHTTPModule } from 'src/Modules/User/infra/UserHttp.module';
+import { AuthenticationMiddleware } from './middlewares/AuthenticationMiddleware';
 
 @Module({
   imports: [
@@ -21,4 +27,16 @@ import { UserHTTPModule } from 'src/Modules/User/infra/user-http.module';
   ],
 })
 // eslint-disable-next-line prettier/prettier
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthenticationMiddleware)
+      // Exclui as rotas que o middleware não deve agir
+      .exclude(
+        { path: 'users', method: RequestMethod.POST },
+        { path: 'sessions', method: RequestMethod.POST },
+      )
+      // Aplica o middleware a todas as rotas
+      .forRoutes('*');
+  }
+}

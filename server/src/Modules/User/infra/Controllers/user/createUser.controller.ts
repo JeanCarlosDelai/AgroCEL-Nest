@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserService } from '../../../Services/user/createUser.service';
 import { CreateUserDto } from 'src/Modules/User/domain/Dto/CreateUserDto';
-import { UserInterface } from 'src/Modules/User/domain/interfaces/User.interface';
+import { UserInterface } from 'src/Modules/User/domain/interfaces/user/User.interface';
 import { instanceToInstance } from 'class-transformer';
 
 @Controller('users')

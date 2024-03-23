@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Exclude, Expose } from 'class-transformer';
-import { UserInterface } from '../../domain/interfaces/User.interface';
+import { UserInterface } from '../../domain/interfaces/user/User.interface';
 
 @Entity('users')
 export class User implements UserInterface {
