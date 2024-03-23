@@ -1,9 +1,9 @@
-import { User } from 'src/Modules/User/infra/typeorm/User.entity';
-import { UserRepositoryInterface } from 'src/Modules/User/repositories/UserRepository.interface';
+import { User } from 'src/Modules/User/infra/typeorm/entities/User.entity';
+import { UserRepositoryInterface } from 'src/Modules/User/domain/repositories/UserRepository.interface';
 import { v4 as uuidv4 } from 'uuid';
-import { CreateUserDto } from '../../Dto/CreateUserDto';
-import { UserInterface } from '../../interfaces/user/User.interface';
-import { ListUserInterface } from '../../interfaces/user/ListUser.interface';
+import { CreateUserDto } from '../../../../domain/Dto/CreateUserDto';
+import { UserInterface } from '../../../../domain/interfaces/user/User.interface';
+import { ListUserInterface } from '../../../../domain/interfaces/user/ListUser.interface';
 
 export class UsersRepositoryInMemory implements UserRepositoryInterface {
   private users: User[] = [];

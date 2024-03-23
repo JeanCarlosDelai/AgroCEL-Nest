@@ -1,5 +1,5 @@
 import { compare, hash } from 'bcryptjs';
-import { HashProviderInterface } from 'src/Modules/User/infra/providers/HashPovider.Interface';
+import { HashProviderInterface } from 'src/Modules/User/domain/providers/HashPovider.Interface';
 
 export class BcryptHashProvider implements HashProviderInterface {
   public async generateHash(payload: string): Promise<string> {

@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginDto } from '../../domain/Dto/LoginDto';
-import { UserAuthenticated } from '../../domain/interfaces/login/UserAuthenticated.interface';
+import { UserAuthenticatedInterface } from '../../domain/interfaces/login/UserAuthenticated.interface';
 import { sign, Secret } from 'jsonwebtoken';
 import authConfig from '../../../../common/config/auth';
-import { UserRepository } from '../../repositories/UserRepository';
+import { UserRepository } from '../../infra/typeorm/repositories/UserRepository';
 import { BcryptHashProvider } from '../../infra/providers/HashProvider/implementations/BcryptHashProvider';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class LoginService {
     // eslint-disable-next-line prettier/prettier
   ) { }
 
-  async execute(loginDto: LoginDto): Promise<UserAuthenticated> {
+  async execute(loginDto: LoginDto): Promise<UserAuthenticatedInterface> {
     const user = await this.userRepository.findByEmail(loginDto.email);
 
     if (!user) {
