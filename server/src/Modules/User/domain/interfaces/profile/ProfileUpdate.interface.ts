@@ -1,6 +1,6 @@
 import { UserInterface } from '../user/User.interface';
 
-export interface ProfileUpdate {
+export interface ProfileUpdateInterface {
   user: UserInterface;
   token: string;
 }

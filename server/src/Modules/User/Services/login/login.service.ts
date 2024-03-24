@@ -14,7 +14,7 @@ export class LoginService {
     // eslint-disable-next-line prettier/prettier
   ) { }
 
-  async execute(loginDto: LoginDto): Promise<UserAuthenticatedInterface> {
+  async login(loginDto: LoginDto): Promise<UserAuthenticatedInterface> {
     const user = await this.userRepository.findByEmail(loginDto.email);
 
     if (!user) {

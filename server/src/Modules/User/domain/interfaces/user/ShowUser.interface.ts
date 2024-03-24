@@ -1,3 +1,3 @@
-export interface ShowUser {
-  user_id: string;
+export interface ShowUserInterface {
+  userId: string;
 }
