@@ -11,7 +11,7 @@ export class ShowProfileController {
 
   @Get()
   @UsePipes(ValidationPipe)
-  async store(@Req() req: Request): Promise<UserInterface> {
+  async show(@Req() req: Request): Promise<UserInterface> {
     const user = await this.showProfileService.show(req.user.id);
     // Remove o password na resposta
     return instanceToInstance(user);

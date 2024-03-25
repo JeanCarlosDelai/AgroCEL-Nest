@@ -19,7 +19,7 @@ export class UpdateProfileController {
 
   @Put()
   @UsePipes(ValidationPipe)
-  async store(
+  async update(
     @Body() updateProfileDto: UpdateProfileDto,
     @Req() req: Request,
   ): Promise<ProfileUpdateInterface> {

@@ -1,7 +1,7 @@
 import { Controller, Get, UsePipes, ValidationPipe } from '@nestjs/common';
 import { instanceToInstance } from 'class-transformer';
-import { ListUserService } from 'src/Modules/User/Services/user/ListUser.service';
-import { ListUserInterface } from 'src/Modules/User/domain/interfaces/user/ListUser.interface';
+import { ListUserService } from '../../../Services/user/ListUser.service';
+import { ListUserInterface } from '../../../domain/interfaces/user/ListUser.interface';
 
 @Controller('users')
 export class ListUserController {

@@ -5,10 +5,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CreateUserService } from '../../../Services/user/CreateUser.service';
+import { instanceToInstance } from 'class-transformer';
+import { CreateUserService } from 'src/Modules/User/Services/user/CreateUser.service';
 import { CreateUserDto } from 'src/Modules/User/domain/Dto/CreateUserDto';
 import { UserInterface } from 'src/Modules/User/domain/interfaces/user/User.interface';
-import { instanceToInstance } from 'class-transformer';
 
 @Controller('users')
 export class CreateUserController {

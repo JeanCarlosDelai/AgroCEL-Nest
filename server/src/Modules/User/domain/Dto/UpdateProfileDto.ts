@@ -1,7 +1,7 @@
 import { IsEmail, IsString } from 'class-validator';
 
 export class UpdateProfileDto {
-  userId: string;
+  userId?: string;
 
   @IsString({ message: 'O campo nome deve ser uma string' })
   name: string;
