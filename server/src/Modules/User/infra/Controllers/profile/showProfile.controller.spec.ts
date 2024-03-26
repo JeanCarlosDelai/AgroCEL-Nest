@@ -38,13 +38,13 @@ describe('showProfileController', () => {
     showProfileService = module.get<ShowProfileService>(ShowProfileService);
   });
 
-  it('should be defined', () => {
+  it('Devem estar definidos', () => {
     expect(showProfileController).toBeDefined();
     expect(showProfileService).toBeDefined();
   });
 
   describe('Show', () => {
-    it('should be possible to show an user', async () => {
+    it('Deve ser possível retornar um usuário', async () => {
       //Arrange
       const req: Partial<Request> = { user: { id: '1' } };
       //Act
@@ -53,7 +53,7 @@ describe('showProfileController', () => {
       expect(result).toEqual(userMock);
     });
 
-    it('Should throw an exception', () => {
+    it('Deve ser possível retornar uma erro', () => {
       //Arrange
       const req: Partial<Request> = { user: { id: '1' } };
       jest.spyOn(showProfileService, 'show').mockRejectedValueOnce(new Error());

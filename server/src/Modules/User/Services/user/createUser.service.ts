@@ -1,14 +1,14 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from '../../domain/Dto/CreateUserDto';
-import { UserRepository } from '../../infra/typeorm/repositories/UserRepository';
 import { UserInterface } from '../../domain/interfaces/user/User.interface';
-import { BcryptHashProvider } from '../../infra/providers/HashProvider/implementations/BcryptHashProvider';
+import { HashProviderContract } from '../../domain/providers/HashProviderContract';
+import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
 
 @Injectable()
 export class CreateUserService {
   constructor(
-    private readonly userRepository: UserRepository,
-    private readonly hashProvider: BcryptHashProvider,
+    private readonly userRepository: UserRepositoryContract,
+    private readonly hashProvider: HashProviderContract,
     // eslint-disable-next-line prettier/prettier
   ) { }
 

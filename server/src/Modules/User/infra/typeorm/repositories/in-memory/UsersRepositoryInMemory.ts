@@ -1,11 +1,11 @@
 import { User } from 'src/Modules/User/infra/typeorm/entities/User.entity';
-import { UserRepositoryInterface } from 'src/Modules/User/domain/repositories/UserRepository.interface';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateUserDto } from '../../../../domain/Dto/CreateUserDto';
 import { UserInterface } from '../../../../domain/interfaces/user/User.interface';
 import { ListUserInterface } from '../../../../domain/interfaces/user/ListUser.interface';
+import { UserRepositoryContract } from 'src/Modules/User/domain/repositories/UserRepositoryContract';
 
-export class UsersRepositoryInMemory implements UserRepositoryInterface {
+export class UsersRepositoryInMemory implements UserRepositoryContract {
   private users: User[] = [];
 
   public async createUser(

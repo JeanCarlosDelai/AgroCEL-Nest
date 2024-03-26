@@ -1,6 +1,6 @@
-import { HashProviderInterface } from 'src/Modules/User/domain/providers/HashPovider.Interface';
+import { HashProviderContract } from 'src/Modules/User/domain/providers/HashProviderContract';
 
-export class FakeHashProvider implements HashProviderInterface {
+export class FakeHashProvider implements HashProviderContract {
   public async generateHash(payload: string): Promise<string> {
     return payload;
   }

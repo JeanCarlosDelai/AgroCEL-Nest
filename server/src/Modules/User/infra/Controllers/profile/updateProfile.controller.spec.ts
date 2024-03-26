@@ -43,13 +43,13 @@ describe('updateProfileController', () => {
       module.get<UpdateProfileService>(UpdateProfileService);
   });
 
-  it('should be defined', () => {
+  it('Devem estar definidos', () => {
     expect(updateProfileController).toBeDefined();
     expect(updateProfileService).toBeDefined();
   });
 
   describe('Show', () => {
-    it('should be possible to show an user', async () => {
+    it('Deve ser possível atualizar um usuário', async () => {
       //Arrange
       const req: Partial<Request> = { user: { id: '1' } };
       const updateProfileDto: UpdateProfileDto = {
@@ -66,7 +66,7 @@ describe('updateProfileController', () => {
       expect(result).toEqual(userMock);
     });
 
-    it('Should throw an exception', () => {
+    it('Deve ser possível retornar uma erro', () => {
       //Arrange
       const req: Partial<Request> = { user: { id: '1' } };
       jest

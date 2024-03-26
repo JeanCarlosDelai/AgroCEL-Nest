@@ -37,13 +37,13 @@ describe('CreateUserController', () => {
     createUserService = module.get<CreateUserService>(CreateUserService);
   });
 
-  it('should be defined', () => {
+  it('Devem estar definidos', () => {
     expect(createUserController).toBeDefined();
     expect(createUserService).toBeDefined();
   });
 
   describe('store', () => {
-    it('should store a user', async () => {
+    it('Deve ser possível criar um usuário', async () => {
       //Arrange
       const createUserDto: CreateUserDto = {
         name: 'John Doe',
@@ -57,7 +57,7 @@ describe('CreateUserController', () => {
       expect(createUserService.store).toHaveBeenCalledTimes(1);
     });
 
-    it('Should throw an exception', () => {
+    it('Deve ser possível retornar uma erro', () => {
       //Arrange
       jest.spyOn(createUserService, 'store').mockRejectedValueOnce(new Error());
       //Assert

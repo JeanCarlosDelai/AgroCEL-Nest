@@ -3,14 +3,14 @@ import { LoginDto } from '../../domain/Dto/LoginDto';
 import { UserAuthenticatedInterface } from '../../domain/interfaces/login/UserAuthenticated.interface';
 import { sign, Secret } from 'jsonwebtoken';
 import authConfig from '../../../../common/config/auth';
-import { UserRepository } from '../../infra/typeorm/repositories/UserRepository';
-import { BcryptHashProvider } from '../../infra/providers/HashProvider/implementations/BcryptHashProvider';
+import { HashProviderContract } from '../../domain/providers/HashProviderContract';
+import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
 
 @Injectable()
 export class LoginService {
   constructor(
-    private readonly userRepository: UserRepository,
-    private readonly hashProvider: BcryptHashProvider,
+    private readonly userRepository: UserRepositoryContract,
+    private readonly hashProvider: HashProviderContract,
     // eslint-disable-next-line prettier/prettier
   ) { }
 
@@ -26,7 +26,7 @@ export class LoginService {
       );
 
       if (!passwordConfirmed) {
-        throw new UnauthorizedException('Email ou senha incorretos');
+        throw new UnauthorizedException('Senha incorreta');
       }
 
       const token = sign({}, process.env.JWT_SECRET as Secret, {

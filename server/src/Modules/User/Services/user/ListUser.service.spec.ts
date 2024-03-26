@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ListUserInterface } from 'src/Modules/User/domain/interfaces/user/ListUser.interface';
-import { ListUserController } from './listUsers.controller';
 import { ListUserService } from 'src/Modules/User/Services/user/ListUser.service';
+import { ListUserInterface } from '../../domain/interfaces/user/ListUser.interface';
+import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
 
 const listUserMock: ListUserInterface = {
   data: [
@@ -28,46 +28,50 @@ const listUserMock: ListUserInterface = {
   ],
 };
 
-describe('ListUserController', () => {
-  let listUserController: ListUserController;
+describe('ListUserService', () => {
   let listUserService: ListUserService;
+  let listUserRepository: UserRepositoryContract;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [ListUserController],
       providers: [
+        ListUserService,
         {
-          provide: ListUserService,
+          provide: UserRepositoryContract,
           useValue: {
-            index: jest.fn().mockResolvedValue(listUserMock),
+            findAll: jest.fn().mockResolvedValue(listUserMock),
           },
         },
       ],
     }).compile();
 
-    listUserController = module.get<ListUserController>(ListUserController);
     listUserService = module.get<ListUserService>(ListUserService);
+    listUserRepository = module.get<UserRepositoryContract>(
+      UserRepositoryContract,
+    );
   });
 
   it('Devem estar definidos', () => {
-    expect(listUserController).toBeDefined();
     expect(listUserService).toBeDefined();
+    expect(listUserRepository).toBeDefined();
   });
 
   describe('index', () => {
-    it('Deve ser possível listar todos os usuários', async () => {
+    it('Deve ser possível listar os usuários', async () => {
       //Act
-      const listUsers = await listUserController.index();
+      const listUsers = await listUserService.index();
       //Assert
       expect(listUsers).toEqual(listUserMock);
-      expect(listUserService.index).toHaveBeenCalledTimes(1);
+      expect(listUserRepository.findAll).toHaveBeenCalledTimes(1);
     });
 
-    it('Deve ser possível retornar uma erro', () => {
+    it('Deve ser possível retornar um erro', () => {
       //Arrange
-      jest.spyOn(listUserService, 'index').mockRejectedValueOnce(new Error());
+      jest
+        .spyOn(listUserRepository, 'findAll')
+        .mockRejectedValueOnce(new Error());
       //Assert
-      expect(listUserController.index()).rejects.toThrow();
+      expect(listUserService.index()).rejects.toThrow();
     });
   });
 });

@@ -3,12 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../../../domain/Dto/CreateUserDto';
 import { User } from '../entities/User.entity';
-import { UserRepositoryInterface } from '../../../domain/repositories/UserRepository.interface';
 import { UserInterface } from '../../../domain/interfaces/user/User.interface';
 import { ListUserInterface } from 'src/Modules/User/domain/interfaces/user/ListUser.interface';
+import { UserRepositoryContract } from 'src/Modules/User/domain/repositories/UserRepositoryContract';
 
 @Injectable()
-export class UserRepository implements UserRepositoryInterface {
+export class UserRepository implements UserRepositoryContract {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,

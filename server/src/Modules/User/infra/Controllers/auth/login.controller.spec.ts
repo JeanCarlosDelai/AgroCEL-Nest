@@ -18,7 +18,7 @@ const userMock: ProfileUpdateInterface = {
   token: 'sdadasdadadada',
 };
 
-describe('updateProfileController', () => {
+describe('LoginController', () => {
   let loginController: LoginController;
   let loginService: LoginService;
 
@@ -39,13 +39,13 @@ describe('updateProfileController', () => {
     loginService = module.get<LoginService>(LoginService);
   });
 
-  it('should be defined', () => {
+  it('Devem estar definidos', () => {
     expect(loginController).toBeDefined();
     expect(loginService).toBeDefined();
   });
 
-  describe('Show', () => {
-    it('should be possible to show an user', async () => {
+  describe('login', () => {
+    it('Deve ser possível fazer o login', async () => {
       //Arrange
       const loginDto: LoginDto = {
         email: 'john@example.com',
@@ -55,9 +55,10 @@ describe('updateProfileController', () => {
       const result = await loginController.login(loginDto);
       //Assert
       expect(result).toEqual(userMock);
+      expect(loginService.login).toHaveBeenCalledTimes(1);
     });
 
-    it('Should throw an exception', () => {
+    it('Deve ser possível retornar uma erro', () => {
       //Arrange
       jest.spyOn(loginService, 'login').mockRejectedValueOnce(new Error());
       //Assert

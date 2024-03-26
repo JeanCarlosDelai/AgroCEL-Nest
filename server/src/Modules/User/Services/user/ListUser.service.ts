@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from '../../infra/typeorm/repositories/UserRepository';
 import { ListUserInterface } from '../../domain/interfaces/user/ListUser.interface';
+import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
 
 @Injectable()
 export class ListUserService {
   // eslint-disable-next-line prettier/prettier
-  constructor(private readonly userRepository: UserRepository) { }
+  constructor(private readonly userRepository: UserRepositoryContract) { }
 
   public async index(): Promise<ListUserInterface> {
     return await this.userRepository.findAll();

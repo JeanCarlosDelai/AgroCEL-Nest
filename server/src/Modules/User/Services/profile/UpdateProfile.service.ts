@@ -1,15 +1,18 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { UserRepository } from '../../infra/typeorm/repositories/UserRepository';
 import { UpdateProfileDto } from '../../domain/Dto/UpdateProfileDto';
-import { compare, hash } from 'bcryptjs';
 import { sign, Secret } from 'jsonwebtoken';
 import authConfig from '../../../../common/config/auth';
 import { ProfileUpdateInterface } from '../../domain/interfaces/profile/ProfileUpdate.interface';
+import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { HashProviderContract } from '../../domain/providers/HashProviderContract';
 
 @Injectable()
 export class UpdateProfileService {
   // eslint-disable-next-line prettier/prettier
-  constructor(private readonly userRepository: UserRepository) { }
+  constructor(private readonly userRepository: UserRepositoryContract,
+    private readonly hashProvider: HashProviderContract,
+    // eslint-disable-next-line prettier/prettier
+  ) { }
 
   public async update(
     updateProfileDto: UpdateProfileDto,
@@ -33,7 +36,7 @@ export class UpdateProfileService {
     }
 
     if (updateProfileDto.password && updateProfileDto.old_password) {
-      const checkOldPassword = await compare(
+      const checkOldPassword = await this.hashProvider.compareHash(
         updateProfileDto.old_password,
         user.password,
       );
@@ -42,7 +45,9 @@ export class UpdateProfileService {
         throw new BadRequestException('Senha antiga está incorreta!');
       }
 
-      user.password = await hash(updateProfileDto.password, 8);
+      user.password = await this.hashProvider.generateHash(
+        updateProfileDto.password,
+      );
     }
 
     user.name = updateProfileDto.name;
