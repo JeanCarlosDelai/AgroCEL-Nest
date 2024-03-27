@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserInterface } from '../../domain/interfaces/user/User.interface';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 import { BadRequestException } from '@nestjs/common';
-import { HashProviderContract } from '../../domain/providers/HashProviderContract';
+import { HashProviderContract } from '../../domain/contracts/providers/HashProviderContract';
 import { CreateUserService } from './CreateUser.service';
 import { CreateUserDto } from '../../domain/Dto/CreateUserDto';
 

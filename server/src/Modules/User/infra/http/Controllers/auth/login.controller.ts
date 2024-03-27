@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  HttpCode,
   Post,
   UsePipes,
   ValidationPipe,
@@ -16,6 +17,7 @@ export class LoginController {
   constructor(private readonly loginService: LoginService) { }
 
   @Post()
+  @HttpCode(200)
   @UsePipes(ValidationPipe)
   async login(@Body() loginDto: LoginDto): Promise<UserAuthenticatedInterface> {
     return instanceToInstance(await this.loginService.login(loginDto));

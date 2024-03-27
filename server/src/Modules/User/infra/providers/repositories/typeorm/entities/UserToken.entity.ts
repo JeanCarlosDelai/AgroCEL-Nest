@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserTokenInterface } from '../../../domain/interfaces/login/UserToken.interface';
+import { UserTokenInterface } from '../../../../../domain/interfaces/login/UserToken.interface';
 
 @Entity('user_tokens')
 export class UserToken implements UserTokenInterface {

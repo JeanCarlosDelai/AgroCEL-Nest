@@ -3,8 +3,8 @@ import { LoginDto } from '../../domain/Dto/LoginDto';
 import { UserAuthenticatedInterface } from '../../domain/interfaces/login/UserAuthenticated.interface';
 import { sign, Secret } from 'jsonwebtoken';
 import authConfig from '../../../../common/config/auth';
-import { HashProviderContract } from '../../domain/providers/HashProviderContract';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { HashProviderContract } from '../../domain/contracts/providers/HashProviderContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 
 @Injectable()
 export class LoginService {

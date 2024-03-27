@@ -1,6 +1,6 @@
 import { CreateUserController } from './createUser.controller';
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateUserService } from '../../../Services/user/CreateUser.service';
+import { CreateUserService } from '../../../../Services/user/CreateUser.service';
 import { CreateUserDto } from 'src/Modules/User/domain/Dto/CreateUserDto';
 import { UserInterface } from 'src/Modules/User/domain/interfaces/user/User.interface';
 

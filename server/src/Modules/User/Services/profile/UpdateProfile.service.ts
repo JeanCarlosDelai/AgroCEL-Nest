@@ -3,8 +3,8 @@ import { UpdateProfileDto } from '../../domain/Dto/UpdateProfileDto';
 import { sign, Secret } from 'jsonwebtoken';
 import authConfig from '../../../../common/config/auth';
 import { ProfileUpdateInterface } from '../../domain/interfaces/profile/ProfileUpdate.interface';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
-import { HashProviderContract } from '../../domain/providers/HashProviderContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
+import { HashProviderContract } from '../../domain/contracts/providers/HashProviderContract';
 
 @Injectable()
 export class UpdateProfileService {

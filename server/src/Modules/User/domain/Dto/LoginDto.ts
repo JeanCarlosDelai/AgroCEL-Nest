@@ -6,7 +6,7 @@ export class LoginDto {
   @IsString({ message: 'O campo email deve ser uma string' })
   readonly email: string;
 
-  @IsNotEmpty({ message: 'O campo senha não pode estar vazio' })
   @IsString({ message: 'O campo senha deve ser uma string' })
+  @IsNotEmpty({ message: 'O campo senha não pode estar vazio' })
   readonly password: string;
 }

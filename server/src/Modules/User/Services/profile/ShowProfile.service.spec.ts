@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserInterface } from '../../domain/interfaces/user/User.interface';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 import { ShowProfileService } from './ShowProfile.service';
 import { BadRequestException } from '@nestjs/common';
 

@@ -1,6 +1,6 @@
-import { CreateUserDto } from '../Dto/CreateUserDto';
-import { ListUserInterface } from '../interfaces/user/ListUser.interface';
-import { UserInterface } from '../interfaces/user/User.interface';
+import { CreateUserDto } from '../../Dto/CreateUserDto';
+import { ListUserInterface } from '../../interfaces/user/ListUser.interface';
+import { UserInterface } from '../../interfaces/user/User.interface';
 
 export abstract class UserRepositoryContract {
   abstract createUser(createUserDto: CreateUserDto): Promise<UserInterface>;

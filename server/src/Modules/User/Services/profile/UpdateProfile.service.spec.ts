@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserInterface } from '../../domain/interfaces/user/User.interface';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 // import { BadRequestException } from '@nestjs/common';
 import { UpdateProfileService } from './UpdateProfile.service';
 import { UpdateProfileDto } from '../../domain/Dto/UpdateProfileDto';
 import { ProfileUpdateInterface } from '../../domain/interfaces/profile/ProfileUpdate.interface';
 import { BadRequestException } from '@nestjs/common';
-import { HashProviderContract } from '../../domain/providers/HashProviderContract';
+import { HashProviderContract } from '../../domain/contracts/providers/HashProviderContract';
 
 const userMock: UserInterface = {
   id: '1',

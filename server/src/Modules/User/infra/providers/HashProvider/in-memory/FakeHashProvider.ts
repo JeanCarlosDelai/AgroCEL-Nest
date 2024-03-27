@@ -1,4 +1,4 @@
-import { HashProviderContract } from 'src/Modules/User/domain/providers/HashProviderContract';
+import { HashProviderContract } from 'src/Modules/User/domain/contracts/providers/HashProviderContract';
 
 export class FakeHashProvider implements HashProviderContract {
   public async generateHash(payload: string): Promise<string> {

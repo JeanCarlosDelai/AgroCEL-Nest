@@ -1,7 +1,7 @@
-import { Controller, Get, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { instanceToInstance } from 'class-transformer';
-import { ListUserService } from '../../../Services/user/ListUser.service';
-import { ListUserInterface } from '../../../domain/interfaces/user/ListUser.interface';
+import { ListUserService } from '../../../../Services/user/ListUser.service';
+import { ListUserInterface } from '../../../../domain/interfaces/user/ListUser.interface';
 
 @Controller('users')
 export class ListUserController {
@@ -9,7 +9,6 @@ export class ListUserController {
   constructor(private readonly listUserService: ListUserService) { }
 
   @Get()
-  @UsePipes(ValidationPipe)
   async index(): Promise<ListUserInterface> {
     const user = await this.listUserService.index();
     // Remove o password na resposta

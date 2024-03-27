@@ -3,9 +3,9 @@ import { LoginService } from './Login.service';
 import { LoginDto } from '../../domain/Dto/LoginDto';
 import { UserInterface } from '../../domain/interfaces/user/User.interface';
 import { UserAuthenticatedInterface } from '../../domain/interfaces/login/UserAuthenticated.interface';
-import { HashProviderContract } from '../../domain/providers/HashProviderContract';
+import { HashProviderContract } from '../../domain/contracts/providers/HashProviderContract';
 import { UnauthorizedException } from '@nestjs/common';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 
 const userMock: UserInterface = {
   id: '1',

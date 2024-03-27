@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Put,
-  Req,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Put, Req } from '@nestjs/common';
 import { instanceToInstance } from 'class-transformer';
 import { Request } from 'express';
 import { UpdateProfileService } from 'src/Modules/User/Services/profile/UpdateProfile.service';
@@ -18,7 +11,6 @@ export class UpdateProfileController {
   constructor(private readonly updateProfileService: UpdateProfileService) { }
 
   @Put()
-  @UsePipes(ValidationPipe)
   async update(
     @Body() updateProfileDto: UpdateProfileDto,
     @Req() req: Request,

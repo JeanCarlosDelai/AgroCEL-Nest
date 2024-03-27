@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ListUserService } from 'src/Modules/User/Services/user/ListUser.service';
 import { ListUserInterface } from '../../domain/interfaces/user/ListUser.interface';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 
 const listUserMock: ListUserInterface = {
   data: [

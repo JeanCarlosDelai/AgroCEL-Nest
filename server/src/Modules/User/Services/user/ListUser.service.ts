@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ListUserInterface } from '../../domain/interfaces/user/ListUser.interface';
-import { UserRepositoryContract } from '../../domain/repositories/UserRepositoryContract';
+import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 
 @Injectable()
 export class ListUserService {
