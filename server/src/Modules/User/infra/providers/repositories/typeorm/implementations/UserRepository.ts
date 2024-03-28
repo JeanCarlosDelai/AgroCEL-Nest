@@ -53,4 +53,8 @@ export class UserRepository implements UserRepositoryContract {
       email,
     });
   }
+
+  public async remove(user: UserInterface): Promise<void> {
+    await this.usersRepository.remove(user);
+  }
 }

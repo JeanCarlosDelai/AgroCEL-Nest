@@ -14,6 +14,8 @@ import { ListUserController } from './http/Controllers/user/listUsers.controller
 import { BcryptHashProvider } from './providers/HashProvider/implementations/BcryptHashProvider';
 import { HashProviderContract } from '../domain/contracts/providers/HashProviderContract';
 import { UserRepositoryContract } from '../domain/contracts/repositories/UserRepositoryContract';
+import { DeleteUserController } from './http/Controllers/user/deleteUser.controller';
+import { DeleteUserService } from '../Services/user/DeleteUser.service';
 @Module({
   imports: [UserModule],
   controllers: [
@@ -22,6 +24,7 @@ import { UserRepositoryContract } from '../domain/contracts/repositories/UserRep
     UpdateProfileController,
     CreateUserController,
     ListUserController,
+    DeleteUserController,
   ],
   providers: [
     LoginService,
@@ -30,6 +33,7 @@ import { UserRepositoryContract } from '../domain/contracts/repositories/UserRep
     CreateUserService,
     ListUserService,
     LoginService,
+    DeleteUserService,
     {
       provide: HashProviderContract,
       useClass: BcryptHashProvider,

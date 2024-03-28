@@ -5,10 +5,9 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import 'dotenv/config';
-import { UserHTTPModule } from 'src/Modules/User/infra/UserHttp.module';
-import { AuthenticationMiddleware } from './middlewares/AuthenticationMiddleware';
-// import { TypeormModule } from 'src/common/persistence/typeorm/typeOrm.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthenticationMiddleware } from './middlewares/AuthenticationMiddleware';
+import { UserHTTPModule } from 'src/Modules/User/infra/UserHttp.module';
 
 @Module({
   imports: [
@@ -33,6 +32,7 @@ export class AppModule implements NestModule {
       // Exclui as rotas que o middleware não deve agir
       .exclude(
         { path: 'users', method: RequestMethod.POST },
+        { path: 'users', method: RequestMethod.DELETE },
         { path: 'sessions', method: RequestMethod.POST },
       )
       // Aplica o middleware a todas as rotas
