@@ -8,8 +8,8 @@ import { HashProviderContract } from '../../domain/contracts/providers/HashProvi
 
 @Injectable()
 export class UpdateProfileService {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private readonly userRepository: UserRepositoryContract,
+  constructor(
+    private readonly userRepository: UserRepositoryContract,
     private readonly hashProvider: HashProviderContract,
     // eslint-disable-next-line prettier/prettier
   ) { }
@@ -22,13 +22,16 @@ export class UpdateProfileService {
     if (!user) {
       throw new BadRequestException('Usuário não encontrado!');
     }
+    console.log(updateProfileDto.email);
+    if (updateProfileDto.email) {
+      const userUpdateEmail = await this.userRepository.findByEmail(
+        updateProfileDto.email,
+      );
+      console.log(userUpdateEmail);
 
-    const userUpdateEmail = await this.userRepository.findByEmail(
-      updateProfileDto.email,
-    );
-
-    if (userUpdateEmail && userUpdateEmail.id !== updateProfileDto.userId) {
-      throw new BadRequestException('Já existe um usuário com este email!');
+      if (userUpdateEmail && userUpdateEmail.id !== updateProfileDto.userId) {
+        throw new BadRequestException('Já existe um usuário com este email!');
+      }
     }
 
     if (updateProfileDto.password && !updateProfileDto.old_password) {
