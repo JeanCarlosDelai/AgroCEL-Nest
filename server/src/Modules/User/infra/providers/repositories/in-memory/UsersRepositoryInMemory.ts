@@ -6,7 +6,26 @@ import { ListUserInterface } from '../../../../domain/interfaces/user/ListUser.i
 import { UserRepositoryContract } from 'src/Modules/User/domain/contracts/repositories/UserRepositoryContract';
 
 export class UsersRepositoryInMemory implements UserRepositoryContract {
-  private users: User[] = [];
+  private users: User[] = [
+    {
+      id: '1',
+      name: 'Teste Teste',
+      email: 'teste@gmail',
+      password: 'teste123',
+      avatar: 'teste.jpg',
+      created_at: null,
+      updated_at: null,
+    },
+    {
+      id: '3',
+      name: 'Teste Teste',
+      email: 'teste2@gmail',
+      password: 'teste123',
+      avatar: 'teste.jpg',
+      created_at: null,
+      updated_at: null,
+    },
+  ];
 
   public async createUser(
     createUserDto: CreateUserDto,
@@ -28,7 +47,7 @@ export class UsersRepositoryInMemory implements UserRepositoryContract {
       (findUser) => findUser.id === user.id,
     );
 
-    this.users[findIndex] = user;
+    this.users[findIndex] = user as any;
 
     return user;
   }

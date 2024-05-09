@@ -1,10 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { UpdateProfileDto } from '../../domain/Dto/UpdateProfileDto';
 import { sign, Secret } from 'jsonwebtoken';
-import authConfig from '../../../../common/config/auth';
 import { ProfileUpdateInterface } from '../../domain/interfaces/profile/ProfileUpdate.interface';
 import { UserRepositoryContract } from '../../domain/contracts/repositories/UserRepositoryContract';
 import { HashProviderContract } from '../../domain/contracts/providers/HashProviderContract';
+import {
+  EMAIL_ALREADY_EXISTS,
+  OLD_PASSWORD_INCORRECT,
+  OLD_PASSWORD_REQUIRED,
+  USER_NOT_FOUND,
+} from '../../domain/consts/user.consts';
 
 @Injectable()
 export class UpdateProfileService {
@@ -20,22 +25,21 @@ export class UpdateProfileService {
     const user = await this.userRepository.findById(updateProfileDto.userId);
 
     if (!user) {
-      throw new BadRequestException('Usuário não encontrado!');
+      throw new BadRequestException(USER_NOT_FOUND);
     }
-    console.log(updateProfileDto.email);
+
     if (updateProfileDto.email) {
       const userUpdateEmail = await this.userRepository.findByEmail(
         updateProfileDto.email,
       );
-      console.log(userUpdateEmail);
 
       if (userUpdateEmail && userUpdateEmail.id !== updateProfileDto.userId) {
-        throw new BadRequestException('Já existe um usuário com este email!');
+        throw new BadRequestException(EMAIL_ALREADY_EXISTS);
       }
     }
 
     if (updateProfileDto.password && !updateProfileDto.old_password) {
-      throw new BadRequestException('Senha antiga é obrigatória!');
+      throw new BadRequestException(OLD_PASSWORD_REQUIRED);
     }
 
     if (updateProfileDto.password && updateProfileDto.old_password) {
@@ -45,7 +49,7 @@ export class UpdateProfileService {
       );
 
       if (!checkOldPassword) {
-        throw new BadRequestException('Senha antiga está incorreta!');
+        throw new BadRequestException(OLD_PASSWORD_INCORRECT);
       }
 
       user.password = await this.hashProvider.generateHash(
@@ -58,9 +62,9 @@ export class UpdateProfileService {
 
     await this.userRepository.save(user);
 
-    const token = sign({}, authConfig.jwt.secret as Secret, {
+    const token = sign({}, process.env.JWT_SECRET as Secret, {
       subject: user.id,
-      expiresIn: authConfig.jwt.expiresIn,
+      expiresIn: process.env.JWT_LIFETIME,
     });
 
     return {

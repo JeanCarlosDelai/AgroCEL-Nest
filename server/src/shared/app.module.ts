@@ -13,6 +13,7 @@ import { UserHTTPModule } from 'src/Modules/User/infra/UserHttp.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
+      url: process.env.DATABASE_LOCAL == 'WEB' ? process.env.DATABASE_URL : '',
       host: process.env.DATABASE_LOCAL == 'WEB' ? '' : 'localhost',
       port: 5432,
       username: 'postgres',

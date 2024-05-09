@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { verify, Secret } from 'jsonwebtoken';
-import authConfig from '../../common/config/auth';
 
 interface ITokenPayload {
   iat: number;
@@ -26,7 +25,7 @@ export class AuthenticationMiddleware implements NestMiddleware {
     const [, token] = authHeader.split(' ');
 
     try {
-      const decodedToken = verify(token, authConfig.jwt.secret as Secret);
+      const decodedToken = verify(token, process.env.JWT_SECRET as Secret);
 
       const { sub } = decodedToken as ITokenPayload;
 

@@ -55,6 +55,6 @@ export class UserRepository implements UserRepositoryContract {
   }
 
   public async remove(user: UserInterface): Promise<void> {
-    await this.usersRepository.remove(user);
+    await this.usersRepository.remove(user as User);
   }
 }
